@@ -1,0 +1,56 @@
+server:
+  port: 8080
+#
+spring:
+  application:
+    name: @artifactId@
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+        username:
+        password:
+        namespace:
+    gateway:
+      discovery:
+        locator:
+          lower-case-service-id: true
+          # 根据服务名称路由
+          enabled: true
+      routes:
+        - id: oauth2-auth-route
+          uri: lb://system-center
+          order: -1
+          predicates:
+            - Path=/auth/**
+          filters:
+            - StripPrefix=1
+
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          # 配置RSA的公钥访问地址
+          #jwk-set-uri: 'http://localhost:9401/rsa/publicKey'
+          public-key-location: classpath:jwt.cert
+
+  redis:
+    # redis 单机环境配置
+    host: localhost
+    port: 6379
+    password:
+    database: 0
+
+# 配置白名单路径
+secure:
+  ignore:
+    urls:
+      - "/actuator/**"
+      - "/auth/oauth/token"
+
+#feign:
+#  sentinel:
+#    enabled: true
+
+logging:
+  config: classpath:logback-dev.xml
