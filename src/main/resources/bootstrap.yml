@@ -36,10 +36,10 @@ spring:
 
   redis:
     # redis 单机环境配置
-    host: localhost
+    host:
     port: 6379
     password:
-    database: 0
+    database: 1
 
 # 配置白名单路径
 secure:

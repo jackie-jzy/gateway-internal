@@ -2,7 +2,6 @@ package com.winter.gateway.authorization;
 
 import cn.hutool.core.convert.Convert;
 import com.winter.gateway.constant.AuthConstant;
-import com.winter.gateway.constant.RedisConstant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.http.HttpMethod;
@@ -12,6 +11,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.web.server.authorization.AuthorizationContext;
 import org.springframework.stereotype.Component;
+import org.winterframework.common.constant.RedisConstant;
 import reactor.core.publisher.Mono;
 
 import java.net.URI;
