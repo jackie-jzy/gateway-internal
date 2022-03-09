@@ -7,7 +7,7 @@ spring:
   cloud:
     nacos:
       discovery:
-        server-addr: localhost:8848
+        server-addr: 192.168.110.199:8848
         username:
         password:
         namespace:
@@ -36,7 +36,7 @@ spring:
 
   redis:
     # redis 单机环境配置
-    host:
+    host: 192.168.110.199
     port: 6379
     password:
     database: 1
@@ -47,6 +47,7 @@ secure:
     urls:
       - "/actuator/**"
       - "/auth/oauth/token"
+      - "**/open-api/**"
 
 #feign:
 #  sentinel:
