@@ -12,6 +12,7 @@ import org.springframework.core.Ordered;
 import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.stereotype.Component;
 import org.springframework.web.server.ServerWebExchange;
+import org.winterframework.common.constant.AuthConstant;
 import reactor.core.publisher.Mono;
 
 import java.text.ParseException;
@@ -50,9 +51,11 @@ public class AuthGlobalFilter implements GlobalFilter, Ordered {
 
         JSONObject jsonObject = JSONUtil.parseObj(userStr);
         ServerHttpRequest request = exchange.getRequest().mutate()
-                .header("User-Id", jsonObject.getStr("id"))
-                .header("Nick-Name", jsonObject.getStr("nick_name"))
-                .header("User-Name", jsonObject.getStr("user_name"))
+                .header(AuthConstant.USER_ID, jsonObject.getStr("id"))
+                .header(AuthConstant.NICK_NAME, jsonObject.getStr("nick_name"))
+                .header(AuthConstant.USER_NAME, jsonObject.getStr("user_name"))
+                .header(AuthConstant.USER_ORG_ID, jsonObject.getStr("user_org_id"))
+                .header(AuthConstant.USER_ROOT, jsonObject.getStr("user_root"))
                 .build();
         exchange = exchange.mutate().request(request).build();
         return chain.filter(exchange);
