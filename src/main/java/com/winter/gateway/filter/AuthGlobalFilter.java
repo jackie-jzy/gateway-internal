@@ -54,7 +54,8 @@ public class AuthGlobalFilter implements GlobalFilter, Ordered {
                 .header(AuthConstant.USER_ID, jsonObject.getStr("id"))
                 .header(AuthConstant.NICK_NAME, jsonObject.getStr("nick_name"))
                 .header(AuthConstant.USER_NAME, jsonObject.getStr("user_name"))
-                .header(AuthConstant.USER_ORG_ID, jsonObject.getStr("user_org_id"))
+                .header(AuthConstant.ORG_ID, jsonObject.getStr("org_id"))
+                .header(AuthConstant.TENANT_ID, jsonObject.getStr("tenant_id"))
                 .header(AuthConstant.USER_ROOT, jsonObject.getStr("user_root"))
                 .build();
         exchange = exchange.mutate().request(request).build();
