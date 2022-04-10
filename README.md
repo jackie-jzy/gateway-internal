@@ -6,7 +6,7 @@
 请到仓中下载 cloud-framework-parent pom 然后本地 install 或上传 Nexus私服上。
 地址：https://gitee.com/misterjzy/cloud-framework-parent
 
-##架构图：
+## 架构图：
 ![图片](./images/fram.png)
 
 
