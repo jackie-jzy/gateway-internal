@@ -1,6 +1,7 @@
 package com.winter.gateway.component;
 
 import cn.hutool.core.date.DateUtil;
+import com.winter.gateway.exception.ValidTokenException;
 import org.springframework.boot.autoconfigure.web.ErrorProperties;
 import org.springframework.boot.autoconfigure.web.ResourceProperties;
 import org.springframework.boot.autoconfigure.web.reactive.error.DefaultErrorWebExceptionHandler;
@@ -33,6 +34,9 @@ public class CustomErrorWebExceptionHandler extends DefaultErrorWebExceptionHand
         if (error instanceof org.springframework.cloud.gateway.support.NotFoundException) {
             code = HttpStatus.NOT_FOUND.value();
         }
+        if (error instanceof ValidTokenException) {
+            code = HttpStatus.UNAUTHORIZED.value();
+        }
         return response(code, this.buildMessage(request, error));
     }
 
@@ -49,16 +53,7 @@ public class CustomErrorWebExceptionHandler extends DefaultErrorWebExceptionHand
      * @return
      */
     private String buildMessage(ServerRequest request, Throwable ex) {
-        StringBuilder message = new StringBuilder("Failed to handle request [");
-        message.append(request.methodName());
-        message.append(" ");
-        message.append(request.uri());
-        message.append("]");
-        if (ex != null) {
-            message.append(": ");
-            message.append(ex.getMessage());
-        }
-        return message.toString();
+        return ex.getMessage();
     }
 
     /**
