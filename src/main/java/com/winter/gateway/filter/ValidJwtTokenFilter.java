@@ -53,8 +53,9 @@ public class ValidJwtTokenFilter implements WebFilter {
         }
         JSONObject jsonObject = JSONUtil.parseObj(userStr);
         String id = jsonObject.getStr("id");
-        String jti = id + "_" + jsonObject.getStr("jti");
-        String token = stringRedisTemplate.opsForValue().get(RedisConstant.RESOURCE_TOKEN + id);
+        String clientId = jsonObject.getStr("client_id");
+        String jti = clientId + "_" + id + "_" + jsonObject.getStr("jti");
+        String token = stringRedisTemplate.opsForValue().get(RedisConstant.RESOURCE_TOKEN + clientId + ":" + id);
         if (StringUtils.isBlank(token) || !token.equals(jti)) {
             log.info("token已过期或token错误");
             throw new ValidTokenException("token已过期或token错误");
