@@ -19,7 +19,7 @@ spring:
           enabled: true
       routes:
         - id: oauth2-auth-route
-          uri: lb://system-center
+          uri: lb://system
           order: -1
           predicates:
             - Path=/auth/**
