@@ -45,10 +45,10 @@ spring:
 secure:
   ignore:
     urls:
-      - "/actuator/**"
+      - "/actuator/*"
       - "/auth/oauth/authorize"
       - "/auth/oauth/token"
-      - "**/open-api/**"
+      - "/system/client/open-api/**"
 
 #feign:
 #  sentinel:
