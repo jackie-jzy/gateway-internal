@@ -75,6 +75,12 @@
             <groupId>org.winter.framework</groupId>
             <artifactId>common</artifactId>
         </dependency>
+
+        <!-- swagger -->
+        <dependency>
+            <groupId>com.github.xiaoymin</groupId>
+            <artifactId>knife4j-spring-boot-starter</artifactId>
+        </dependency>
     </dependencies>
 
     <build>

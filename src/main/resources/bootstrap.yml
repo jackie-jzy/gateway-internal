@@ -1,5 +1,5 @@
 server:
-  port: 8080
+  port: 8082
 #
 spring:
   main:
@@ -41,7 +41,7 @@ spring:
 
   redis:
     # redis 单机环境配置
-    host: localhost
+    host: 192.168.10.199
     port: 6379
     password:
     database: 0
@@ -53,7 +53,13 @@ secure:
       - "/actuator/*"
       - "/auth/oauth/authorize"
       - "/auth/oauth/token"
-      - "/system/client/open-api/**"
+      - "/**/open-api/**"
+      - "/doc.html"
+      - "/swagger-resources/**"
+      - "/webjars/**"
+      - "/img.icons/**"
+      - "/swagger-resources/**"
+      - "/**/v2/api-docs"
 
 #feign:
 #  sentinel:
