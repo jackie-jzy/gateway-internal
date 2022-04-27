@@ -34,7 +34,7 @@ public class ValidJwtTokenFilter implements WebFilter {
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, WebFilterChain chain) {
         String authorization = exchange.getRequest().getHeaders().getFirst("Authorization");
-        if (StrUtil.isEmpty(authorization)) {
+        if (StrUtil.isEmpty(authorization) || authorization.contains("Basic")) {
             return chain.filter(exchange);
         }
         //从token中解析用户信息并设置到Header中去

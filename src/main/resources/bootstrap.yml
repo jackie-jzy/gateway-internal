@@ -15,14 +15,14 @@ spring:
           lower-case-service-id: true
           # 根据服务名称路由
           enabled: true
-      routes:
-        - id: oauth2-auth-route
-          uri: lb://system
-          order: -1
-          predicates:
-            - Path=/auth/**
-          filters:
-            - StripPrefix=1
+#      routes:
+#        - id: oauth2-auth-route
+#          uri: lb://system
+#          order: -1
+#          predicates:
+#            - Path=/auth/**
+#          filters:
+#            - StripPrefix=1
 
   security:
     oauth2:
@@ -37,9 +37,10 @@ secure:
   ignore:
     urls:
       - "/actuator/*"
-      - "/auth/oauth/authorize"
-      - "/auth/oauth/token"
+      - "/system/v1/auth/authorize"
+      - "/system/v1/auth/token"
       - "/**/open-api/**"
+      - "/**/**/open-api/**"
       - "/doc.html"
       - "/swagger-resources/**"
       - "/webjars/**"
