@@ -44,7 +44,6 @@ secure:
       - "/swagger-resources/**"
       - "/webjars/**"
       - "/img.icons/**"
-      - "/swagger-resources/**"
       - "/**/v2/api-docs"
 
 #feign:
